@@ -1,0 +1,672 @@
+fileFormatVersion: 2
+guid: 0eb695d5c893d12479ecff4d950651e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7006604183867072851
+    second: broken80_0
+  - first:
+      213: -2027735565900189843
+    second: broken80_1
+  - first:
+      213: 2154687389950639131
+    second: broken80_2
+  - first:
+      213: 5208378009407342551
+    second: broken80_3
+  - first:
+      213: 8790905299976441601
+    second: broken80_4
+  - first:
+      213: 6816928018070204287
+    second: broken80_5
+  - first:
+      213: 860297374505770812
+    second: broken80_6
+  - first:
+      213: -2428724795979352223
+    second: broken80_7
+  - first:
+      213: 1737433911938434797
+    second: broken80_8
+  - first:
+      213: -3123849764024224389
+    second: broken80_9
+  - first:
+      213: 7255642434649212062
+    second: broken80_10
+  - first:
+      213: -1975972287683504694
+    second: broken80_11
+  - first:
+      213: 4488903306817834966
+    second: broken80_12
+  - first:
+      213: -6152280581938282567
+    second: broken80_13
+  - first:
+      213: -6910657614074301493
+    second: broken80_14
+  - first:
+      213: -2829331892475413391
+    second: broken80_15
+  - first:
+      213: 3144460184168559935
+    second: broken80_16
+  - first:
+      213: -4629689072935335646
+    second: broken80_17
+  - first:
+      213: 5177193174966469638
+    second: broken80_18
+  - first:
+      213: -5279728798239985134
+    second: broken80_19
+  - first:
+      213: -3825946182847315097
+    second: broken80_20
+  - first:
+      213: 4864702785016123734
+    second: broken80_21
+  - first:
+      213: 946075320056754786
+    second: broken80_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: broken80_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 174.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dae56da0e9a83ce90800000000000000
+      internalID: -7006604183867072851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 174.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fe7180f390cd3e0800000000000000
+      internalID: -2027735565900189843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 174.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c7500e3ccf6ed10800000000000000
+      internalID: 2154687389950639131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 131.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d74ea25430e74840800000000000000
+      internalID: 5208378009407342551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_4
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 131.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fc13b4bc19ff970800000000000000
+      internalID: 8790905299976441601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_5
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 131.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f6b703ae79a9e50800000000000000
+      internalID: 6816928018070204287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 131.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f1e9077e360fb00800000000000000
+      internalID: 860297374505770812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_7
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 131.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 167b77e7aaf6b4ed0800000000000000
+      internalID: -2428724795979352223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6cec500fa9c1810800000000000000
+      internalID: 1737433911938434797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_9
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 88.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75f5a3c03bd5a4d0800000000000000
+      internalID: -3123849764024224389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_10
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 88.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94448e2a5831b460800000000000000
+      internalID: 7255642434649212062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_11
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 88.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac5db9a6cafe394e0800000000000000
+      internalID: -1975972287683504694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_12
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 88.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df04f936c9cb4e30800000000000000
+      internalID: 4488903306817834966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 45
+        width: 14
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bff80b2865be9aa0800000000000000
+      internalID: -6152280581938282567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_14
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 45.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc3b0c4a3896810a0800000000000000
+      internalID: -6910657614074301493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_15
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 45.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17cb15d52a13cb8d0800000000000000
+      internalID: -2829331892475413391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_16
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 45.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f35f9bf90ed53ab20800000000000000
+      internalID: 3144460184168559935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_17
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 45.4
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2298e2b315a00cfb0800000000000000
+      internalID: -4629689072935335646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2.4000015
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 604047f33c519d740800000000000000
+      internalID: 5177193174966469638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_19
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2.4000015
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212718691a2aab6b0800000000000000
+      internalID: -5279728798239985134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_20
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 2.4000015
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763cf99a73287eac0800000000000000
+      internalID: -3825946182847315097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_21
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 2.4000015
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6515dbe9865e28340800000000000000
+      internalID: 4864702785016123734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: broken80_22
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 2.4000015
+        width: 13.6
+        height: 43.6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2623fb6bd72212d00800000000000000
+      internalID: 946075320056754786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
