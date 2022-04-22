@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     float currentTime = 0f;
-    float startTime = 30f;
+    public float startTime = 3f;
     public Text countDownText;
     Image countDownImage;
     Color color = Color.red;

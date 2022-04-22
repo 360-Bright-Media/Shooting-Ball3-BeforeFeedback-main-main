@@ -92,11 +92,14 @@ public class GameManager : MonoBehaviour
    
     [SerializeField] GameObject P2;
     [SerializeField] GameObject Footer_1;
+    [SerializeField] GameObject Footer;
     [SerializeField] Text ChanceLeft;
     [SerializeField] Text ReloadPrice;
 
     private bool isReEntryPaid;
     private bool isSingleEntry;
+
+    public GameObject EndUI;
 
     private void Awake()
     {
@@ -121,11 +124,11 @@ public class GameManager : MonoBehaviour
         //    Time.timeScale = 0;
         //}
     }
-    void Update()
-    {
-        float offset = Time.time * scrollSpeed;
-        backGroundAnim.SetTextureOffset("_MainTex", new Vector2(offset, 0));
-    }
+    //void Update()
+    //{
+    //    float offset = Time.time * scrollSpeed;
+    //    backGroundAnim.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+    //}
 
 
     void Start()
@@ -248,10 +251,10 @@ public class GameManager : MonoBehaviour
                     {
                         WebRequestHandler.Instance.Get(botListURL, (response, status) =>
                         {
-                            System.Random r = new System.Random();
-                            int rand = r.Next(0, 7);
-
                             BotList botList = JsonUtility.FromJson<BotList>(response);
+                            System.Random r = new System.Random();
+                            int rand = r.Next(0, botList.data.Length);
+
 
                             otherPlayer.playerIdToBeSentorReceived = botList.data[rand].id;
                             otherPlayer.imageURL = botList.data[rand].image;
@@ -310,24 +313,24 @@ public class GameManager : MonoBehaviour
 
             attemptNo = int.Parse(attempt.data.remainAttemp);
 
-            if (attempt.data.remainAttemp == AndroidtoUnityJSON.instance.no_of_attempts)
-            {
-                AndroidtoUnityJSON.instance.isFirst = true;
-            }
-            else
-            {
-                AndroidtoUnityJSON.instance.isFirst = false;
-            }
+                if (attempt.data.remainAttemp == AndroidtoUnityJSON.instance.no_of_attempts)
+                {
+                    AndroidtoUnityJSON.instance.isFirst = true;
+                }
+                else
+                {
+                    AndroidtoUnityJSON.instance.isFirst = false;
+                }
             });
         }
 
         if (AndroidtoUnityJSON.instance.game_mode == "tour")
         {
-            if (AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.isFirst ||
-                AndroidtoUnityJSON.instance.entry_type == "re entry paid" || AndroidtoUnityJSON.instance.entry_type == "single entry")
-            {
-                DeductWallet();
-            }
+            //if (AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.isFirst ||
+            //    AndroidtoUnityJSON.instance.entry_type == "re entry paid" || AndroidtoUnityJSON.instance.entry_type == "single entry")
+            //{
+            //    DeductWallet();
+            //}
         }
         else
         {
@@ -364,6 +367,7 @@ public class GameManager : MonoBehaviour
             ChanceLeft.gameObject.SetActive(false);
             ReplayBtn.transform.parent.gameObject.SetActive(false);
             Footer_1.SetActive(true);
+            
         }
         else if (AndroidtoUnityJSON.instance.game_mode == "tour")
         {
@@ -390,13 +394,21 @@ public class GameManager : MonoBehaviour
 
 
 
-        if (float.Parse(AndroidtoUnityJSON.instance.game_fee) <= 0 || AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.game_mode == "tour")
+        if (float.Parse(AndroidtoUnityJSON.instance.game_fee) <= 0) //|| AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.game_mode == "tour")
         {
             ReloadPrice.text = "FREE";
         }
         else
         {
             ReloadPrice.text = /* "?" +*/ AndroidtoUnityJSON.instance.game_fee;
+        }
+
+        EndUI.SetActive(true);
+
+        foreach (var ui in EndUIGameObj)
+        {
+            ui.SetActive(true);
+
         }
 
         while (foundWinner == false)
@@ -413,62 +425,89 @@ public class GameManager : MonoBehaviour
                     {
                         // StartGameOverScreen.transform.GetChild(1).gameObject.SetActive(false);
                         //EndUIFetchingScoreObj.SetActive(false);
-                        foreach (var ui in EndUIGameObj)
-                        {
-                            ui.SetActive(true);
-                        }
+
+                        WebRequestHandler.Instance.Get(serverURL + "fetchscore/" + myRoomId + "/" + thisPlayer.playerId + "/" + otherPlayer.playerId + "/" + thisPlayer.score + "/" + thisPlayer.incrementFactor, (response, status) => {
+
+                            otherPlayer.score = Int32.Parse(response);
+
+                        });
+
                         foundWinner = true;
-                        NetworkingPlayer winner = JsonUtility.FromJson<NetworkingPlayer>(response);
-                        if (winner.playerId == thisPlayer.playerId)
+
+                        if (response == "draw")
                         {
-                            //canRestart = true;
-                            //ReplayBtn.GetComponent<Button>().interactable = canRestart;
 
-                            thisPlayer.iWon = true;
-                            Debug.Log(thisPlayer.playerName + " won with score " + thisPlayer.score);
-                            sendThisPlayerData.winning_details.winningPlayerScore = thisPlayer.score.ToString();
+                            // Debug.Log(thisPlayer.playerName + " won with score " + thisPlayer.score);
+                            sendThisPlayerData.winning_details.winningPlayerScore = thisPlayer.score.ToString();              //ScoringManager.instance.score.ToString();
                             sendThisPlayerData.winning_details.winningPlayerID = thisPlayer.playerIdToBeSentorReceived;
-                            sendThisPlayerData.winning_details.lossingPlayerID= otherPlayer.playerIdToBeSentorReceived;
+                            sendThisPlayerData.winning_details.lossingPlayerID = otherPlayer.playerIdToBeSentorReceived;           // was not string
                             sendThisPlayerData.winning_details.lossingPlayerScore = otherPlayer.score.ToString();
-
                             WinnerNameText.text = thisPlayer.playerName;
                             LosserNameText.text = otherPlayer.playerName;
-                            displayWinnerOrLosserText.text = "YOU WON";
+                            displayWinnerOrLosserText.text = "MATCH DRAW";
                             RankNo.text = "1";
-                            sendThisPlayerData.game_status = "WIN";
-                            displayScoreTextAtEnd.text = score.ToString();
-                            scoreOnBoard.text = score.ToString();
+                            sendThisPlayerData.game_status = "DRAW";
+                            displayScoreTextAtEnd.text = thisPlayer.score.ToString();
+                            scoreOnBoard.text = thisPlayer.score.ToString();
                             opponentScoreOnBoard.text = otherPlayer.score.ToString();
-                            //UpdateWallet(true);
-
                         }
-                        else if (winner.playerId == otherPlayer.playerId)
+
+
+                        else
                         {
+                            NetworkingPlayer winner = JsonUtility.FromJson<NetworkingPlayer>(response);
+                            if (winner.playerId == thisPlayer.playerId)
+                            {
+                                //canRestart = true;
+                                //ReplayBtn.GetComponent<Button>().interactable = canRestart;
+
+                                thisPlayer.iWon = true;
+                                Debug.Log(thisPlayer.playerName + " won with score " + thisPlayer.score);
+                                sendThisPlayerData.winning_details.winningPlayerScore = thisPlayer.score.ToString();
+                                sendThisPlayerData.winning_details.winningPlayerID = thisPlayer.playerIdToBeSentorReceived;
+                                sendThisPlayerData.winning_details.lossingPlayerID = otherPlayer.playerIdToBeSentorReceived;
+                                sendThisPlayerData.winning_details.lossingPlayerScore = otherPlayer.score.ToString();
+
+                                WinnerNameText.text = thisPlayer.playerName;
+                                LosserNameText.text = otherPlayer.playerName;
+                                displayWinnerOrLosserText.text = "YOU WON";
+                                RankNo.text = "1";
+                                sendThisPlayerData.game_status = "WIN";
+                                displayScoreTextAtEnd.text = score.ToString();
+                                scoreOnBoard.text = score.ToString();
+                                opponentScoreOnBoard.text = otherPlayer.score.ToString();
+                                //UpdateWallet(true);
+
+                            }
+                            else if (winner.playerId == otherPlayer.playerId)
+                            {
 
 
-                            //if (GlobalWalletBalance >= int.Parse(AndroidtoUnityJSON.instance.game_fee))
-                            //    canRestart = true;
-                            //else
-                            //    canRestart = false;
+                                //if (GlobalWalletBalance >= int.Parse(AndroidtoUnityJSON.instance.game_fee))
+                                //    canRestart = true;
+                                //else
+                                //    canRestart = false;
 
-                            //ReplayBtn.GetComponent<Button>().interactable = canRestart;
+                                //ReplayBtn.GetComponent<Button>().interactable = canRestart;
 
-                            otherPlayer.iWon = true;
-                            //otherPlayer = winner;
-                            Debug.Log(otherPlayer.playerName + " won with score " + otherPlayer.score);
-                            sendThisPlayerData.winning_details.winningPlayerScore = otherPlayer.score.ToString();
-                            sendThisPlayerData.winning_details.winningPlayerID= otherPlayer.playerIdToBeSentorReceived;
-                            sendThisPlayerData.winning_details.lossingPlayerID = thisPlayer.playerIdToBeSentorReceived;
-                            sendThisPlayerData.winning_details.lossingPlayerScore = thisPlayer.score.ToString();
-                            WinnerNameText.text = otherPlayer.playerName;
-                            LosserNameText.text = thisPlayer.playerName;
-                            displayWinnerOrLosserText.text = "YOU LOSE";
-                            RankNo.text = "2";
-                            sendThisPlayerData.game_status = "LOST";
-                            displayScoreTextAtEnd.text = score.ToString();
-                            scoreOnBoard.text = otherPlayer.score.ToString();
-                            opponentScoreOnBoard.text = score.ToString();
+                                otherPlayer.iWon = true;
+                                //otherPlayer = winner;
+                                Debug.Log(otherPlayer.playerName + " won with score " + otherPlayer.score);
+                                sendThisPlayerData.winning_details.winningPlayerScore = otherPlayer.score.ToString();
+                                sendThisPlayerData.winning_details.winningPlayerID = otherPlayer.playerIdToBeSentorReceived;
+                                sendThisPlayerData.winning_details.lossingPlayerID = thisPlayer.playerIdToBeSentorReceived;
+                                sendThisPlayerData.winning_details.lossingPlayerScore = thisPlayer.score.ToString();
+                                WinnerNameText.text = otherPlayer.playerName;
+                                LosserNameText.text = thisPlayer.playerName;
+                                displayWinnerOrLosserText.text = "YOU LOSE";
+                                RankNo.text = "2";
+                                sendThisPlayerData.game_status = "LOST";
+                                displayScoreTextAtEnd.text = score.ToString();
+                                scoreOnBoard.text = otherPlayer.score.ToString();
+                                opponentScoreOnBoard.text = score.ToString();
+                            }
                         }
+
 
                         sendThisPlayerData.player_id = otherPlayer.playerIdToBeSentorReceived;
                         sendThisPlayerData.winning_details.thisplayerScore = thisPlayer.score;
@@ -483,7 +522,8 @@ public class GameManager : MonoBehaviour
 
                         sendThisPlayerData.game_end_time = GetSystemTime();      
                         //sendThisPlayerData.game_status = "FINISHED";
-                        //sendThisPlayerData.wallet_amt = GlobalWalletBalance.ToString();         // commenteed on 21/03
+
+                        sendThisPlayerData.wallet_amt = GlobalWalletBalance.ToString();         // commented on 21/03      // uncommented on 01/04
 
                         string sendWinningDetailsData = JsonUtility.ToJson(winningDetails);
                         string sendNewData1 = JsonUtility.ToJson(sendThisPlayerData);
@@ -500,8 +540,8 @@ public class GameManager : MonoBehaviour
 
                         isDataSend = true;
 
-                        if (otherPlayer.isBot)
-                            SendBotData(otherPlayer.iWon);
+                        //if (otherPlayer.isBot)
+                        //    SendBotData(otherPlayer.iWon);
 
                     }
                     else
@@ -619,11 +659,11 @@ public class GameManager : MonoBehaviour
 
         if (AndroidtoUnityJSON.instance.game_mode == "tour")
         {
-            if (AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.isFirst ||
-                AndroidtoUnityJSON.instance.entry_type == "re entry paid" || AndroidtoUnityJSON.instance.entry_type == "single entry")
-            {
-                DeductWallet();
-            }
+            //if (AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.isFirst ||
+            //    AndroidtoUnityJSON.instance.entry_type == "re entry paid" || AndroidtoUnityJSON.instance.entry_type == "single entry")
+            //{
+            //    DeductWallet();
+            //}
         }
         else
         {
@@ -645,13 +685,15 @@ public class GameManager : MonoBehaviour
             ReplayBtn.transform.parent.gameObject.SetActive(false);
             Footer_1.SetActive(true);
         }
+
         else if (AndroidtoUnityJSON.instance.game_mode == "tour")
         {
-            if (attemptNo <= 0)
-            {
-                ReplayBtn.transform.parent.gameObject.SetActive(false);
-                Footer_1.SetActive(true);
-            }
+            //if (attemptNo <= 0)
+            //{
+            //ReplayBtn.transform.parent.gameObject.SetActive(false);
+            
+            Footer_1.SetActive(true);
+            //}
 
             ChanceLeft.gameObject.SetActive(true);
             ChanceLeft.text = "Chances Left: " + attemptNo;
@@ -670,7 +712,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if (float.Parse(AndroidtoUnityJSON.instance.game_fee) <= 0 || AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.game_mode == "tour")
+        if (float.Parse(AndroidtoUnityJSON.instance.game_fee) <= 0) //|| AndroidtoUnityJSON.instance.entry_type == "re entry" && AndroidtoUnityJSON.instance.game_mode == "tour")
         {
             ReloadPrice.text = "FREE";
         }
@@ -682,12 +724,14 @@ public class GameManager : MonoBehaviour
 
 
         //EndUIFetchingScoreObj.SetActive(true);
-        //EndUI.SetActive(true);
+        EndUI.SetActive(true);
+        
 
         foreach (var ui in EndUIGameObj)
         {
-            if (ui.gameObject.name != LosserNameText.transform.parent.gameObject.name && AndroidtoUnityJSON.instance.mm_player == "1")
-                ui.SetActive(true);               
+            Footer.SetActive(false);
+            if (ui.gameObject.name != LosserNameText.transform.parent.gameObject.name && AndroidtoUnityJSON.instance.mm_player == "1")           
+                ui.SetActive(true);           
         }
 
         while (foundWinner == false)
@@ -947,24 +991,47 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    
-    int pauseCounter = 0;
-   
+
     private void OnApplicationPause(bool pause)
     {
-        if (pauseCounter == 0)
+        if(!pause)
         {
-            pauseCounter++;
-            return;
-        }
-        else if (isDataSend == false && canStartGame)
-        {
+            if (canStartGame && AndroidtoUnityJSON.instance.game_mode == "battle")
+            {
+                WebRequestHandler.Instance.Get(serverURL + "checkIfLeftRoom/" + myRoomId, (response, status) =>
+                {
+                    Debug.Log(response);
+                    if (response == "canQuit->" + myRoomId)
+                    {
+                        //Application.Quit();
+                        StartCoroutine(QuitApplication());
+                    }
 
-            sendThisPlayerData.player_id = otherPlayer.playerId;
-            sendThisPlayerData.winning_details.thisplayerScore = thisPlayer.score;
+                });
+            }
+        }
+    }
+
+    void Update()
+    {
+        float offset = Time.time * scrollSpeed;
+        backGroundAnim.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+
+
+    }
+
+
+    IEnumerator QuitApplication()
+    {
+
+        if (!isDataSend)
+        {
+            sendThisPlayerData.player_id = otherPlayer.playerIdToBeSentorReceived;
+            sendThisPlayerData.winning_details.thisplayerScore = score;
             sendThisPlayerData.wallet_amt = AndroidtoUnityJSON.instance.game_fee;
             sendThisPlayerData.game_mode = AndroidtoUnityJSON.instance.game_mode;
             sendThisPlayerData.game_id = AndroidtoUnityJSON.instance.game_id;
+
             if (AndroidtoUnityJSON.instance.game_mode == "tour")
                 sendThisPlayerData.battle_tournament_id = AndroidtoUnityJSON.instance.tour_id;
             else if (AndroidtoUnityJSON.instance.game_mode == "battle")
@@ -972,6 +1039,7 @@ public class GameManager : MonoBehaviour
 
             sendThisPlayerData.game_end_time = GetSystemTime();
             sendThisPlayerData.game_status = "LEFT";
+
             sendWinningDetailsData = JsonUtility.ToJson(winningDetails);
             sendNewData1 = JsonUtility.ToJson(sendThisPlayerData);
             WebRequestHandler.Instance.Post(sendDataURL, sendNewData1, (response, status) =>
@@ -980,9 +1048,21 @@ public class GameManager : MonoBehaviour
             });
 
             isDataSend = true;
+
+            Debug.Log("bella ciao");
+            Application.Quit();
+
+            yield return new WaitForSeconds(0.2f);
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+
+
         }
 
-        Application.Quit();
     }
 
 
