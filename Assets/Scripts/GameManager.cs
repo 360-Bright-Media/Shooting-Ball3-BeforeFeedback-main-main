@@ -43,11 +43,12 @@ public class GameManager : MonoBehaviour
 
     //Networking variables
     public string serverURL = "https://gamejoyproserver1v1.herokuapp.com/";
-    public string sendDataURL = "http://52.66.182.199/api/gameplay";
-    public string walletInfoURL = "http://52.66.182.199/api/wallet";
-    public string walletUpdateURL = "http://52.66.182.199/api/walletdeduction";
-    public string getTournAttemptURL = "https://admin.gamejoypro.com/api/getattempts";
-    public string botListURL = "https://admin.gamejoypro.com/api/botlist";
+    public string sendDataURL = "https://livegamejoypro.com/api/gameplay";
+    public string walletInfoURL = "https://livegamejoypro.com/api/wallet";
+    public string walletUpdateURL = "https://livegamejoypro.com/walletdeduction";
+    public string getTournAttemptURL = "https://livegamejoypro.com/api/getattempts";
+    public string botListURL = "https://livegamejoypro.com/api/botlist";
+    public string walletCheckURL = "https://livegamejoypro.com/api/checkWallet";
 
     public NetworkingPlayer otherPlayer;
     public NetworkingPlayer thisPlayer;
@@ -63,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     public WalletInfo walletInfo;
     public WallUpdate walletUpdate;
+    public WalletCheck walletCheck;
+    public WalletCheckPost walletCheckPost;
 
 
     public bool foundOtherPlayer = false;
@@ -959,18 +962,25 @@ public class GameManager : MonoBehaviour
 
     public void ReloadScene()
     {
-        //LeaveRoom();
-        //wallet check
-        float balance = 0f;
+        bool balance = false;
 
-        walletInfoData = JsonUtility.ToJson(walletInfo);
-        WebRequestHandler.Instance.Post(walletInfoURL, walletInfoData, (response, status) =>
+        walletCheckPost.game_id = AndroidtoUnityJSON.instance.game_id;
+        walletCheckPost.type = AndroidtoUnityJSON.instance.game_mode;
+
+        if (AndroidtoUnityJSON.instance.game_mode == "tour")
+            walletCheckPost.tournament_battle_id = AndroidtoUnityJSON.instance.tour_id;
+        else if (AndroidtoUnityJSON.instance.game_mode == "battle")
+            walletCheckPost.tournament_battle_id = AndroidtoUnityJSON.instance.battle_id;
+
+        string WalletCheckPostData = JsonUtility.ToJson(walletCheckPost);
+        WebRequestHandler.Instance.Post(walletCheckURL, WalletCheckPostData, (response, status) =>
         {
-            WalletInfo walletInfoResponse = JsonUtility.FromJson<WalletInfo>(response);
-            balance = float.Parse(walletInfoResponse.data.cash_balance);
+
+            WalletCheck WalletCheckResponse = JsonUtility.FromJson<WalletCheck>(response);
+            balance = bool.Parse(WalletCheckResponse.status);
             Debug.Log(balance + " <= replay check balance");
 
-            if (balance >= float.Parse(AndroidtoUnityJSON.instance.game_fee))
+            if (balance)
                 canRestart = true;
             else
                 canRestart = false;

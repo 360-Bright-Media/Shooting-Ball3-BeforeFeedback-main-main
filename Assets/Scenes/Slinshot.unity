@@ -30591,12 +30591,12 @@ MonoBehaviour:
   inGameProfilePicPlayer: {fileID: 759886873}
   inGameProfielPicOtherPlayer: {fileID: 134083013}
   StartScreenBackButton: {fileID: 21546955}
-  serverURL: http://13.126.228.217:4000/
-  sendDataURL: https://admin.gamejoypro.com/api/gameplay
-  walletInfoURL: https://admin.gamejoypro.com/api/wallet
-  walletUpdateURL: https://admin.gamejoypro.com/walletdeduction
-  getTournAttemptURL: https://admin.gamejoypro.com/api/getattempts
-  botListURL: https://admin.gamejoypro.com/api/botlist
+  serverURL: http://65.2.81.222:4000/
+  sendDataURL: https://livegamejoypro.com/api/gameplay
+  walletInfoURL: https://livegamejoypro.com/api/wallet
+  walletUpdateURL: https://livegamejoypro.com/walletdeduction
+  getTournAttemptURL: https://livegamejoypro.com/api/getattempts
+  botListURL: https://livegamejoypro.com/api/botlist
   otherPlayer:
     gameName: 
     playerName: 
