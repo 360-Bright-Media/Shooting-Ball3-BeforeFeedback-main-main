@@ -285,7 +285,7 @@ public class SlingShot : MonoBehaviour
         void onGroundCollision()
         {
         GroundSound.instance.GetComponent<BoxCollider2D>().enabled = true;
-    }
+        }
     }
 
 

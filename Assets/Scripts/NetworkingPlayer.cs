@@ -19,6 +19,8 @@ public class NetworkingPlayer
     public bool isConnected = false;
     public bool isBot = false;
     public float[] incrementFactor;
+    public int otherPlayerScore;
+    public string endGameText;
 }
 
 [Serializable]

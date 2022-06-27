@@ -43,14 +43,14 @@ public class MatchmakingManager : MonoBehaviour
 
             OppNo.text = new string(temp).ToUpper();
             yield return new WaitForSeconds(.05f);
+
+
+            // Assign HSV values to float h, s & v. (Since material.color is stored in RGB)
+            float h, s, v;
+            Color.RGBToHSV(LoadingCircle.color, out h, out s, out v);
+
+            // Use HSV values to increase H in HSVToRGB. It looks like putting a value greater than 1 will round % 1 it
+            LoadingCircle.color = Color.HSVToRGB(h + Time.deltaTime * .25f, s, v);
         }
-
-        // Assign HSV values to float h, s & v. (Since material.color is stored in RGB)
-        float h, s, v;
-        Color.RGBToHSV(LoadingCircle.color, out h, out s, out v);
-
-        // Use HSV values to increase H in HSVToRGB. It looks like putting a value greater than 1 will round % 1 it
-        LoadingCircle.color = Color.HSVToRGB(h + Time.deltaTime * .25f, s, v);
-
     }
 }
